@@ -1,0 +1,3 @@
+[submodule "tests/lib/Yunit"]
+	path = tests/lib/Yunit
+	url = https://github.com/Uberi/Yunit.git
