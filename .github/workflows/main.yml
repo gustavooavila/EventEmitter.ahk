@@ -1,0 +1,36 @@
+name: test
+on:
+  pull_request:
+
+jobs:
+  build:
+    name: Build and Run Tests
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository and submodules
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          
+      - name: Install Scoop
+        shell: powershell
+        run: |
+          iwr -useb get.scoop.sh | iex
+          scoop bucket add extras
+          
+      - name: Add to environment variables
+        shell: powershell
+        run: Write-Output ('Path=' + $Env:SystemDrive + '\Windows\System32' + ';' + $Env:UserProfile + '\scoop\shims') >> $Env:GITHUB_ENV
+
+      - name: Install AutoHotkey
+        shell: powershell
+        run: scoop install autohotkey
+        
+      - name: Build and Run Tests
+        run: autohotkey.exe tests/automatedTest.ahk
+        
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v2
+        if: always() # always run even if the previous step fails
+        with:
+          report_paths: 'tests/junit.xml'
