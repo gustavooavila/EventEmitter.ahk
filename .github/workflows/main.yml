@@ -27,7 +27,7 @@ jobs:
         run: scoop install autohotkey
         
       - name: Build and Run Tests
-        run: autohotkey.exe tests/automatedTest.ahk
+        run: autohotkey.exe /ErrorStdOut tests/automatedTest.ahk
         
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v2
