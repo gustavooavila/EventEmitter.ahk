@@ -1,7 +1,7 @@
 
 # Autohotkey Event Emitter
 
-An autohotkey event handling class based in the nodejs's [EventEmitter](https://nodejs.org/api/events.html#events_class_eventemitter)
+An autohotkey event handling class based on the nodejs's [EventEmitter](https://nodejs.org/api/events.html#events_class_eventemitter)
 
 #Documentation
 
